@@ -31,7 +31,7 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
-/*algo ****COMPLETAR aca***** */
+/*algo ****COMPLETAR aca ok***** */
 
 
 
