@@ -28,6 +28,10 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 
 /**
  *  ****COMPLETAR*****
+ * sirve para convertir un string, float en un numero entero
+ * @param int $min
+ * @param int $max
+ * @return int $numero
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -120,7 +124,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * esta funcion sirve para mostrar en pantalla un mensaje de bienvenida
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -134,6 +139,9 @@ function escribirMensajeBienvenida($usuario)
 
 /**
  * ****COMPLETAR*****
+ * devuelve true si todos los caracteres son letras
+ * @param string $cadena
+ * @return boolean $esLetra
  */
 function esPalabra($cadena)
 {
@@ -149,7 +157,9 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ * revisar**
+ *  sirve para ingresar una palabra de 5 letras
+ * @return $palabra
  */
 function leerPalabra5Letras()
 {
