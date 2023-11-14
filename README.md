@@ -17,3 +17,5 @@ Universidad Nacional del Comahue
 
 -.**JOAQUIN DAL DOSSO VULCANO** - Legajo 4926 - mail:joaquin.daldosso@est.fi.uncoma.edu.ar- Github: vulcanojoaquin
 
+-.**CHAMORRO NAHUEL** - Legajo 5035 - mail:nahuel.chamorro@est.fi.uncoma.edu.ar- Github: nahucham18
+
