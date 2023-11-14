@@ -6,7 +6,7 @@ Juego wordix desarrollado en introduccion a la programacion(FAI)
 # Materia 2023
 
 
-Introduccion a la programacion.com
+Introduccion a la programacion
 Tecnicatura en desarrollo web
 Facultad de informatica
 Universidad Nacional del Comahue
