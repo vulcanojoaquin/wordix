@@ -164,8 +164,30 @@ do
 
             
             break;
-        case 3: 
+        case 3:  
 
+            $long=count($coleccionPartidas);
+            if ($long==0) {
+                echo"no hay partidas registradas \n";
+                echo"enter para continuar";
+                trim(fgets(STDIN));
+                break ;
+            }           
+            
+            $aux=$long -1;
+            echo "numero de partidas: $long\n ";
+            echo "ingrese un numero de partida:";
+           // $num=trim(fgets(STDIN));
+            $num= solicitarNumeroEntre(1, $long);
+            print_r($coleccionPartidas [$num-1]);
+            
+            
+            /*if ($num>$long || $num<0) {
+                echo "no existe esa partida";
+            }
+            else{
+                print_r($coleccionPartidas [$num-1]);
+            }*/
             break;
         case 8:
             echo ' Quiere cerrar el juego? Y/N';
