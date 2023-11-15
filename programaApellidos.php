@@ -27,7 +27,7 @@ function cargarColeccionPalabras()
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS"
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         /* Agregar 5 palabras más */
     ];
 
@@ -138,7 +138,30 @@ do
             // $numPalabra = solicitarNumeroEntre($min, $max);
             break;
         case 2: 
-            echo 'completar qué secuencia de pasos ejecutar si el usuario elige la opción 2';
+            $arrayPalabras = cargarColeccionPalabras();
+            // echo "el array es";
+            // print_r($arrayPalabras);
+            echo "Ingrese su nombre:";
+            $nombre = trim(fgets(STDIN));
+           do{
+            $long=count($arrayPalabras);
+            $num=rand(0,2);
+            
+            echo "\n";
+            echo"$num";
+            echo "\n";
+            $palabraBuscada = buscarPalabra($num,$arrayPalabras);
+            echo"$palabraBuscada";
+            $palabraRepetida = buscarPalabraRepetida($coleccionPartidas,$nombre,$palabraBuscada);
+        }while($palabraRepetida);
+
+           
+
+            $partida = jugarWordix("$palabraBuscada", strtolower($nombre));
+            
+            array_push($coleccionPartidas, $partida);
+            print_r($coleccionPartidas);
+
             
             break;
         case 3: 
