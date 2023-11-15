@@ -115,14 +115,17 @@ do
             break;
         case 1: 
             $arrayPalabras = cargarColeccionPalabras();
-            echo "el array es";
-            print_r($arrayPalabras);
+            // echo "el array es";
+            // print_r($arrayPalabras);
             echo "Ingrese su nombre:";
             $nombre = trim(fgets(STDIN));
             do{
-                echo "Ingrese un numero entre 1 y 5";
+                echo "Ingrese un numero entre 0 y 5";
                 $num = trim(fgets(STDIN));
                 $palabraBuscada = buscarPalabra($num,$arrayPalabras);
+                echo "\n";
+                echo "$palabraBuscada";
+                echo "\n";
                 $palabraRepetida = buscarPalabraRepetida($coleccionPartidas,$nombre,$palabraBuscada);
                 if($palabraRepetida){
                     echo "La palabra ya fue usada por $nombre";
