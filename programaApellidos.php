@@ -120,6 +120,25 @@ function primerPartidaGanada($nombre, $coleccionPartidas)
     }
     return ($ganador);
 }
+/**
+ * Buscar primera partida cargada 
+ * @param $nombre string
+ * @param $coleccionPartidas array
+ * @return array
+ */
+ function buscarPrimeraPartida($nombre , $coleccionPartidas) {
+    $newArray = [];
+    
+    foreach($coleccionPartidas as $partida){
+        if($partida['jugador'] === $nombre && $partida['puntaje'] > 0 ){
+            array_push($newArray, $partida);
+        }
+    }
+    if(count($newArray) === 0){
+        $newArray = null;
+    }
+    return $newArray;
+ }
 
 
 
@@ -247,9 +266,13 @@ do {
             break;
         case 4:
             $nombre = solicitarNombre();
-            $ganada = primerPartidaGanada($nombre, $coleccionPartidas);
-            print_r("Primera partida Ganada".$ganada);
-
+            $partidaGanada = buscarPrimeraPartida($nombre,$coleccionPartidas);
+            if($partidaGanada === null){
+                echo "no gano ninguna";
+            }else {
+                print_r($partidaGanada[0]);
+            }
+            break;
 
         case 8:
             echo ' Quiere cerrar el juego? Y/N';
