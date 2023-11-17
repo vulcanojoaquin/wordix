@@ -153,8 +153,8 @@ do {
             $arrayPalabras = cargarColeccionPalabras();
             // echo "el array es";
             // print_r($arrayPalabras);
-           
-            $nombre =solicitarNombre();
+
+            $nombre = solicitarNombre();
             do {
                 echo "Ingrese un numero entre 0 y 5";
                 $num = trim(fgets(STDIN));
@@ -177,8 +177,8 @@ do {
             $arrayPalabras = cargarColeccionPalabras();
             // echo "el array es";
             // print_r($arrayPalabras);
-            
-            $nombre =solicitarNombre();
+
+            $nombre = solicitarNombre();
             do {
                 $long = count($arrayPalabras);
                 $num = rand(0, $long);
@@ -225,24 +225,15 @@ do {
                 print_r($coleccionPartidas [$num-1]);
             }*/
             break;
-<<<<<<< HEAD
-            case 4:
-                $ganoElIntento = esIntentoGanado($arregloDeIntentosWordix[$indiceIntento]);
-                $nroIntento=0;
-                if ($ganoElIntento) {
-                    $nroIntento++;
-                }
-                
-                echo "hola";
-                ;
-=======
         case 4:
+            $ganoElIntento = esIntentoGanado($arregloDeIntentosWordix[$indiceIntento]);
+            $nroIntento = 0;
+            if ($ganoElIntento) {
+                $nroIntento++;
+            }
 
-
-
-
-
->>>>>>> b6705d5654d118be70f6a2ac9e267a2baaa3be04
+            echo "hola";
+            echo "chamorro gato";
 
         case 8:
             echo ' Quiere cerrar el juego? Y/N';
