@@ -104,17 +104,22 @@ function solicitarNombre()
  * @param array $coleccionPartidas
  * @return array
  */
-    function primerPartidaGanada($nombre , $coleccionPartidas){
-        foreach ($coleccionPartidas as $partida  ) {
-                if ($partida["jugador"]==$nombre) {
-                    if ($puntaje>0) {
-                        
-                    }
-                }
-            print_r($partida);
+function primerPartidaGanada($nombre, $coleccionPartidas)
+{
+    $centinela = 0;
+    foreach ($coleccionPartidas as $partida) {
+        if ($partida["jugador"] == $nombre && $centinela == 0)
+            if ($partida["puntaje"] > 0 ) {
+                $ganador = $partida;
+                $centinela = 1;
+                
+            } else {
 
-        }
+                echo "No gano ninguna partida";
+            }
     }
+    return ($ganador);
+}
 
 
 
@@ -241,9 +246,10 @@ do {
             }*/
             break;
         case 4:
-            
-            $nombre= primerPartidaGanada($nombre , $coleccionPartidas);
-            
+            $nombre = solicitarNombre();
+            $ganada = primerPartidaGanada($nombre, $coleccionPartidas);
+            print_r("Primera partida Ganada".$ganada);
+
 
         case 8:
             echo ' Quiere cerrar el juego? Y/N';
