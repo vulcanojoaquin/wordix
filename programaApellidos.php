@@ -145,7 +145,7 @@ do
             $nombre = trim(fgets(STDIN));
            do{
             $long=count($arrayPalabras);
-            $num=rand(0,2);
+            $num=rand(0,$long);
             
             echo "\n";
             echo"$num";
@@ -153,7 +153,7 @@ do
             $palabraBuscada = buscarPalabra($num,$arrayPalabras);
             echo"$palabraBuscada";
             $palabraRepetida = buscarPalabraRepetida($coleccionPartidas,$nombre,$palabraBuscada);
-        }while($palabraRepetida);
+          }while($palabraRepetida);
 
            
 
@@ -189,6 +189,13 @@ do
                 print_r($coleccionPartidas [$num-1]);
             }*/
             break;
+        case 4:
+            
+           
+
+
+
+
         case 8:
             echo ' Quiere cerrar el juego? Y/N';
             $resp = trim(fgets(STDIN));
