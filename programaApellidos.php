@@ -189,6 +189,16 @@ do
                 print_r($coleccionPartidas [$num-1]);
             }*/
             break;
+            case 4:
+                $ganoElIntento = esIntentoGanado($arregloDeIntentosWordix[$indiceIntento]);
+                $nroIntento=0;
+                if ($ganoElIntento) {
+                    $nroIntento++;
+                }
+                
+                echo "hola";
+                ;
+
         case 8:
             echo ' Quiere cerrar el juego? Y/N';
             $resp = trim(fgets(STDIN));
