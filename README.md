@@ -15,5 +15,7 @@ Universidad Nacional del Comahue
 # Integrantes del grupo
 -.**MATTEO ALDAY** - Legajo 4557 - mail:matteo.alday@est.fi.uncoma.edu.ar- Github: Aldaymatteo
 
+-.**JOAQUIN DAL DOSSO VULCANO** - Legajo 4926 - mail:joaquin.daldosso@est.fi.uncoma.edu.ar- Github: vulcanojoaquin
 
+-.**CHAMORRO NAHUEL** - Legajo 5035 - mail:nahuel.chamorro@est.fi.uncoma.edu.ar- Github: nahucham18
 
