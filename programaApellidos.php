@@ -98,8 +98,23 @@ function solicitarNombre()
     return strtolower($nombre);
 }
 
+/**
+ * esta funcion muestra la primer partida ganada
+ * @param string $nombre
+ * @param array $coleccionPartidas
+ * @return array
+ */
+    function primerPartidaGanada($nombre , $coleccionPartidas){
+        foreach ($coleccionPartidas as $partida  ) {
+                if ($partida["jugador"]==$nombre) {
+                    if ($puntaje>0) {
+                        
+                    }
+                }
+            print_r($partida);
 
-
+        }
+    }
 
 
 
@@ -226,13 +241,8 @@ do {
             }*/
             break;
         case 4:
-            $ganoElIntento = esIntentoGanado($arregloDeIntentosWordix[$indiceIntento]);
-            $nroIntento = 0;
-            if ($ganoElIntento) {
-                $nroIntento++;
-            }
-
-            echo "hola";
+            
+            $nombre= primerPartidaGanada($nombre , $coleccionPartidas);
             
 
         case 8:
