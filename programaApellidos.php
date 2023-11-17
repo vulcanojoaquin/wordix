@@ -233,7 +233,7 @@ do {
             }
 
             echo "hola";
-            echo "chamorro gato";
+            
 
         case 8:
             echo ' Quiere cerrar el juego? Y/N';
