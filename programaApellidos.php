@@ -106,18 +106,28 @@ function solicitarNombre()
  */
 function primerPartidaGanada($nombre, $coleccionPartidas)
 {
+    $jugo = false;
     $centinela = 0;
-    foreach ($coleccionPartidas as $partida) {
-        if ($partida["jugador"] == $nombre && $centinela == 0)
-            if ($partida["puntaje"] > 0 ) {
-                $ganador = $partida;
+    $posicion = 0;
+    $ganador = -1;
+    while ($centinela == 0 && $posicion < count($coleccionPartidas)) {
+        if ($coleccionPartidas[$posicion]["jugador"] == $nombre) {
+            $jugo = true;
+            if ($coleccionPartidas[$posicion]["puntaje"] > 0) {
+                $ganador = $posicion;
                 $centinela = 1;
-                
-            } else {
-
-                echo "No gano ninguna partida";
             }
+        }
+
+
+        $posicion++;
     }
+
+    if ($ganador == -1 && $jugo) {
+        $ganador = -2;
+    }
+
+
     return ($ganador);
 }
 /**
@@ -126,20 +136,39 @@ function primerPartidaGanada($nombre, $coleccionPartidas)
  * @param $coleccionPartidas array
  * @return array
  */
- function buscarPrimeraPartida($nombre , $coleccionPartidas) {
+function buscarPrimeraPartida($nombre, $coleccionPartidas)
+{
     $newArray = [];
-    
-    foreach($coleccionPartidas as $partida){
-        if($partida['jugador'] === $nombre && $partida['puntaje'] > 0 ){
+
+    foreach ($coleccionPartidas as $partida) {
+        if ($partida['jugador'] === $nombre && $partida['puntaje'] > 0) {
             array_push($newArray, $partida);
         }
     }
-    if(count($newArray) === 0){
+    if (count($newArray) === 0) {
         $newArray = null;
     }
     return $newArray;
- }
+}
 
+/**
+ * Función de comparación para ordenar por palabraWordix y, en caso de empate, por jugador
+ * @param array $a
+ * @param array $b
+ * @return 
+ **/
+function compararPorPalabraYJugador($a, $b)
+{
+    // Comparar por palabraWordix
+    $comparacionPalabra = strcmp($a['jugador'], $b['jugador']);
+
+    // Si las palabras son iguales, comparar por jugador
+    if ($comparacionPalabra == 0) {
+        $comparacionPalabra= strcmp($a['palabraWordix'], $b['palabraWordix']);
+    }
+
+    return $comparacionPalabra;
+}
 
 
 /* ****COMPLETAR***** */
@@ -220,7 +249,8 @@ do {
             $nombre = solicitarNombre();
             do {
                 $long = count($arrayPalabras);
-                $num = rand(0, $long);
+                echo $long;
+                $num = rand(0, $long-1);
 
                 echo "\n";
                 echo "$num";
@@ -266,12 +296,31 @@ do {
             break;
         case 4:
             $nombre = solicitarNombre();
-            $partidaGanada = buscarPrimeraPartida($nombre,$coleccionPartidas);
-            if($partidaGanada === null){
+            $partidaGanada = primerPartidaGanada($nombre, $coleccionPartidas);
+
+            if ($partidaGanada == -2) {
                 echo "no gano ninguna";
-            }else {
-                print_r($partidaGanada[0]);
+            } elseif ($partidaGanada == -1) {
+
+                echo "no jugo ninguna partida";
+            } else {
+                print_r($coleccionPartidas[$partidaGanada]);
             }
+            break;
+
+
+
+        case 5:
+
+            break;
+
+
+        case 6:
+           
+            uasort($coleccionPartidas, 'compararPorPalabraYJugador');
+
+            
+            print_r($coleccionPartidas);
             break;
 
         case 8:
