@@ -316,13 +316,28 @@ do {
 
 
         case 6:
-           
             uasort($coleccionPartidas, 'compararPorPalabraYJugador');
-
-            
             print_r($coleccionPartidas);
             break;
 
+        case 7:
+            $coleccionPalabras = cargarColeccionPalabras();
+            echo "Ingrese una palabra de 5 letras \n";
+            $nuevaPalabra = trim(fgets(STDIN));
+            $palabraLen = strlen($nuevaPalabra);
+            if ($palabraLen === 5){
+                $nuevaPalabraMayus = strtoupper($nuevaPalabra);
+                echo $nuevaPalabraMayus;
+                array_push($coleccionPalabras, $nuevaPalabraMayus);
+                print_r($coleccionPalabras);
+                
+            }else{
+                echo "La palabra no contiene 5 letras";
+            }
+
+
+
+            break;
         case 8:
             echo ' Quiere cerrar el juego? Y/N';
             $resp = trim(fgets(STDIN));
