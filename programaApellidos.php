@@ -157,8 +157,7 @@ function buscarPrimeraPartida($nombre, $coleccionPartidas)
  * @param array $b
  * @return 
  **/
-function compararPorPalabraYJugador($a, $b)
-{
+function compararPorPalabraYJugador($a, $b){
     // Comparar por palabraWordix
     $comparacionPalabra = strcmp($a['jugador'], $b['jugador']);
 
@@ -169,6 +168,62 @@ function compararPorPalabraYJugador($a, $b)
 
     return $comparacionPalabra;
 }
+
+
+/**
+ * funcion para estadisticas del jugador
+ * @param string $nombre
+ * @param array $coleccionPartidasStaticas
+ * @return array
+ * 
+ */
+
+function estadisticasjugador($nombre, $coleccionPartidasStaticas){
+    //$partidasJugador=;
+    $victorias=0;
+    
+    $adivinadas= ["intento1"=>0 , "intento2"=>0, "intento3"=>0, "intento4"=>0, "intento5"=>0, "intento6"=>0];
+    $estadisticas=[];
+    $partidas=0;
+    $puntajeTotal=0;
+    foreach ($coleccionPartidasStaticas as $item) {
+        if ($item['jugador'] === $nombre) {
+         //array_push($partidasJugador,$item);
+         $partidas++;
+         $puntajeTotal=$puntajeTotal+$item["puntaje"]; 
+          if($item["intentos"]>0){
+
+              $victorias++;
+          }
+            
+        }
+    }
+    $porcentajeVictorias=intval(($victorias*100)/$partidas);
+
+    echo"********************************************\n";
+    echo"jugador: $nombre\n";
+    echo"partidas: $partidas\n";
+    echo"puntaje total: $puntajeTotal\n";
+    echo"victorias: $victorias\n";
+    echo"porcentaje victorias: $porcentajeVictorias %\n";
+    echo"adivinadas: \n";
+
+    print_r($adivinadas);
+    echo"********************************************\n";
+    // array_push($estadisticas,$nombre);
+    // array_push($estadisticas,$partidas);
+    // array_push($estadisticas,$puntajeTotal);
+    // array_push($estadisticas,$victorias);
+    // array_push($estadisticas,$porcentajeVictorias);
+    // array_push($estadisticas,$adivinadas);
+    
+    // return $estadisticas;
+
+
+} 
+
+
+
 
 
 /* ****COMPLETAR***** */
@@ -182,6 +237,18 @@ function compararPorPalabraYJugador($a, $b)
 //Declaración de variables:
 
 $coleccionPartidas = [];
+
+$coleccionPartidasStaticas = [
+    ["palabraWordix"=>"MUJER" , "jugador"=>"nahuel", "intentos"=>0, "puntaje"=>0],
+    ["palabraWordix"=>"QUESO" , "jugador"=>"mateo", "intentos"=>1, "puntaje"=>14],
+    ["palabraWordix"=>"VERDES" , "jugador"=>"joako", "intentos"=>2, "puntaje"=>10],
+    ["palabraWordix"=>"NAVEZ" , "jugador"=>"nahuel", "intentos"=>3, "puntaje"=>8],
+    ["palabraWordix"=>"NAVES" , "jugador"=>"mateo", "intentos"=>4, "puntaje"=>6],
+    ["palabraWordix"=>"QUESO" , "jugador"=>"joako", "intentos"=>5, "puntaje"=>7],
+    ["palabraWordix"=>"MUJER" , "jugador"=>"nahuel", "intentos"=>6, "puntaje"=>8],
+    ["palabraWordix"=>"LINDA" , "jugador"=>"mateo", "intentos"=>0, "puntaje"=>0],
+    ["palabraWordix"=>"QUESO" , "jugador"=>"joako", "intentos"=>0, "puntaje"=>0],
+];
 
 //Inicialización de variables:
 
@@ -311,6 +378,11 @@ do {
 
 
         case 5:
+            $nombre = solicitarNombre();
+            $estadisticas= estadisticasjugador($nombre,$coleccionPartidasStaticas);
+            print_r($estadisticas);
+           
+
 
             break;
 
