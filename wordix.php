@@ -29,7 +29,7 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**
  *  ****COMPLETAR*****
  */
-function solicitarNumeroEntre($min, $max)
+function solicitarNumeroEntre($min, $max, $amarillo, $reset)
 {
     //int $numero
 
@@ -39,7 +39,7 @@ function solicitarNumeroEntre($min, $max)
         $numero  = $numero * 1; //con esta operación convierto el string en número.
     }
     while (!(is_numeric($numero) && (($numero == (int)$numero) && ($numero >= $min && $numero <= $max)))) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+        echo $amarillo . "Debe ingresar un número entre " . $min . " y " . $max . ": " . $reset . PHP_EOL;
         $numero = trim(fgets(STDIN));
         if (is_numeric($numero)) {
             $numero  = $numero * 1;
