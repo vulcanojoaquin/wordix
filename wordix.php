@@ -156,8 +156,8 @@ function leerPalabra5Letras()
     //string $palabra
     echo "Ingrese una palabra de 5 letras: ";
     $palabra = trim(fgets(STDIN));
-    $palabra  = strtoupper($palabra);
 
+    $palabra  = strtoupper($palabra);
     while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
         echo "Debe ingresar una palabra de 5 letras:";
         $palabra = strtoupper(trim(fgets(STDIN)));
@@ -334,17 +334,14 @@ function esIntentoGanado($estructuraPalabraIntento)
  */
 function obtenerPuntajeWordix($nroIntento)  /* ****COMPLETAR***** parámetros formales necesarios */
 {
-    $puntaje = 0;
-
-    if($nroIntento === 1) return $puntaje + 6;
-    if($nroIntento === 2) return $puntaje + 5;
-    if($nroIntento === 3) return $puntaje + 4;
-    if($nroIntento === 4) return $puntaje + 3;
-    if($nroIntento === 5) return $puntaje + 2;
-    if($nroIntento === 6) return $puntaje + 1;
-
-
     /* ****COMPLETAR***** cuerpo de la función*/
+    $puntaje = 0;
+    if ($nroIntento === 1) return $puntaje + 6;
+    if ($nroIntento === 2) return $puntaje + 5;
+    if ($nroIntento === 3) return $puntaje + 4;
+    if ($nroIntento === 4) return $puntaje + 3;
+    if ($nroIntento === 5) return $puntaje + 2;
+    if ($nroIntento === 6) return $puntaje + 1;
     return $puntaje;
 }
 
