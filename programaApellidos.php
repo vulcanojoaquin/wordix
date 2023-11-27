@@ -185,16 +185,14 @@ function estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset)
     $adivinadas = ["intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
     foreach ($coleccionPartidas as $item) {
         if ($item['jugador'] === $nombre) {
-           
+
             //array_push($partidasJugador,$item);
             $partidas++;
             $puntajeTotal = $puntajeTotal + $item["puntaje"];
             if ($item["intentos"] > 0) {
                 $victorias++;
             }
-            
         }
-
     }
     $porcentajeVictorias = intval(($victorias * 100) / $partidas);
 
@@ -368,7 +366,7 @@ do {
         case 5:
             echo $naranja . "\n5) Mostrar resumen de Jugador " . $reset . PHP_EOL;
             $nombre = solicitarNombre();
-            
+
             foreach ($coleccionPartidas as $item) {
                 if ($item['jugador'] === $nombre) {
                     $estadisticas = estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset);
@@ -395,35 +393,23 @@ do {
 
         case 7:
             echo $naranja . "\n7) Agregar una palabra de 5 letras a Wordix " . $reset . PHP_EOL;
-            // $coleccionPalabras = cargarColeccionPalabras();
             do {
-                $res = 'y';
-                echo "Ingrese una palabra de 5 letras: ";
-                $nuevaPalabra = trim(fgets(STDIN));
-                $palabraLen = strlen($nuevaPalabra);
+                $res = 'n';
                 $palabraRepetida = false;
-                if ($palabraLen === 5) {
-                    $nuevaPalabraMayus = strtoupper($nuevaPalabra);
-                    foreach ($coleccionPalabras as $palabra) {
-                        if ($palabra === $nuevaPalabraMayus) {
-                            $palabraRepetida = true;
-                        }
+                $palabra = leerPalabra5Letras();
+                foreach ($coleccionPalabras as $item) {
+                    if ($palabra === $item) {
+                        $palabraRepetida = true;
                     }
-                    if ($palabraRepetida) {
-                        echo $rojo . "La palabra ya existe" . $reset . PHP_EOL;
-                        $res = pregunta();
-                    } else {
-                        // echo $nuevaPalabraMayus;
-                        // print_r($coleccionPalabras);
-                        array_push($coleccionPalabras, $nuevaPalabraMayus);
-                        echo $verde . "Se agrego la palabra $nuevaPalabraMayus para jugar" . $reset . PHP_EOL;
-                        $res = 'n';
-                    }
-                } else {
-                    echo $rojo . "La palabra no contiene 5 letras" . $reset . PHP_EOL;
                 }
-            } while ($res === 'y');
-
+                if ($palabraRepetida === false) {
+                    array_push($coleccionPalabras, $palabra);
+                    echo $verde . "Se agrego la palabra $palabra para jugar" . $reset . PHP_EOL;
+                } else {
+                    echo $rojo . "La palabra ya existe" . $reset . PHP_EOL;
+                    $res = pregunta();
+                }
+            } while ($palabraRepetida !== false && $res !== 'n');
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
@@ -440,7 +426,6 @@ do {
             } else {
                 echo $verdeClaro . "Bien sigamos jugando" . $reset . PHP_EOL;
             }
-
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
