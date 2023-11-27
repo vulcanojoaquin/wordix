@@ -171,26 +171,30 @@ function compararPorPalabraYJugador($a, $b)
  * @param string $verClaro;
  * @param string $reset;
  * @param string $nombre;
- * @param array $coleccionPartidasStaticas;
+ * @param array $coleccionPartidas;
  * @return array
  * 
  */
 
-function estadisticasjugador($nombre, $coleccionPartidasStaticas, $verdeClaro, $reset)
+function estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset)
 {
     $partidas = 0;
     $victorias = 0;
     $puntajeTotal = 0;
+
     $adivinadas = ["intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
-    foreach ($coleccionPartidasStaticas as $item) {
+    foreach ($coleccionPartidas as $item) {
         if ($item['jugador'] === $nombre) {
+           
             //array_push($partidasJugador,$item);
             $partidas++;
             $puntajeTotal = $puntajeTotal + $item["puntaje"];
             if ($item["intentos"] > 0) {
                 $victorias++;
             }
+            
         }
+
     }
     $porcentajeVictorias = intval(($victorias * 100) / $partidas);
 
@@ -215,8 +219,26 @@ function estadisticasjugador($nombre, $coleccionPartidasStaticas, $verdeClaro, $
 
 }
 
-
-
+//rev
+/**
+ * obtener puntaje obtenido
+ * @param int $nroIntento
+ * @param int $palabraIntento
+ * @return int
+ */
+function obtenerPuntaje($nroIntento, $palabraIntento)
+{
+    $puntaje = 7 - $nroIntento;
+    $puntajeLetras = [
+        'A' => 1, 'B' => 2, 'C' => 2, 'D' => 2, 'E' => 1, 'F' => 2, 'G' => 2, 'H' => 2, 'I' => 1, 'J' => 2, 'K' => 2,
+        'L' => 2, 'M' => 2, 'N' => 3, 'Ñ' => 3, 'O' => 1, 'P' => 3, 'Q' => 3, 'R' => 3, 'S' => 3, 'T' => 3, 'U' => 1, 'V' => 3,
+        'W' => 3, 'X' => 3, 'Y' => 3, 'Z' => 3,
+    ];
+    foreach (str_split($palabraIntento) as $letra) {
+        $puntaje = $puntaje + $puntajeLetras[$letra];
+    }
+    return $puntaje;
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -226,7 +248,7 @@ function estadisticasjugador($nombre, $coleccionPartidasStaticas, $verdeClaro, $
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = [];
 
-$coleccionPartidasStaticas = [
+/*$coleccionPartidasStaticas = [
     ["palabraWordix" => "MUJER", "jugador" => "nahuel", "intentos" => 0, "puntaje" => 0],
     ["palabraWordix" => "QUESO", "jugador" => "mateo", "intentos" => 1, "puntaje" => 14],
     ["palabraWordix" => "VERDES", "jugador" => "joako", "intentos" => 2, "puntaje" => 10],
@@ -236,7 +258,7 @@ $coleccionPartidasStaticas = [
     ["palabraWordix" => "MUJER", "jugador" => "nahuel", "intentos" => 6, "puntaje" => 8],
     ["palabraWordix" => "LINDA", "jugador" => "mateo", "intentos" => 0, "puntaje" => 0],
     ["palabraWordix" => "QUESO", "jugador" => "joako", "intentos" => 0, "puntaje" => 0],
-];
+];*/
 
 //Colores
 $rojo = "\033[0;31m";
@@ -275,7 +297,7 @@ do {
     echo $amarillo . "8) salir \n" . $reset . PHP_EOL;
     echo "Elegir una opcion: ";
     $opcion = trim(fgets(STDIN));
-  //
+    //
     switch ($opcion) {
         case 1:
             echo $naranja . "\n1) Jugar al wordix con una palabra elegida " . $reset . PHP_EOL;
@@ -286,13 +308,13 @@ do {
                 echo "Ingrese un numero entre 0 y $len:  ";
                 $num = trim(fgets(STDIN));
                 if ($num < 0 || $num > $len) {
-                    echo $rojo . "No existe la palabra" . $reset . PHP_EOL;
+                    echo $rojo . "no es valido" . $reset . PHP_EOL;
                     do {
                         $res = pregunta();
                     } while ($res !== 'n' && $res !== 'y');
                 } else {
                     $palabraBuscada = buscarPalabra($num, $coleccionPalabras);
-                    echo "\n$palabraBuscada\n";
+                    //  echo "\n$palabraBuscada\n";
                     $palabraRepetida = buscarPalabraRepetida($coleccionPartidas, $nombre, $palabraBuscada);
                     if ($palabraRepetida) {
                         echo $rojo . "La palabra ya fue usada por $nombre" . $reset . PHP_EOL;
@@ -320,12 +342,12 @@ do {
                 $num = rand(0, $long - 1);
                 echo "\n$num\n";
                 $palabraBuscada = buscarPalabra($num, $coleccionPalabras);
-                echo "$palabraBuscada";
+                //   echo "$palabraBuscada";
                 $palabraRepetida = buscarPalabraRepetida($coleccionPartidas, $nombre, $palabraBuscada);
             } while ($palabraRepetida);
             $partida = jugarWordix("$palabraBuscada", strtolower($nombre));
             array_push($coleccionPartidas, $partida);
-           // print_r($coleccionPartidas);
+            // print_r($coleccionPartidas);
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             //readline lee una linea
@@ -342,7 +364,7 @@ do {
             }
             echo "Partidas jugadas: $long\nIngrese un numero de partida: ";
             $num = (solicitarNumeroEntre(1, $long, $amarillo, $reset) - 1);
-            datosPartida('partida',$num,$coleccionPartidas);
+            datosPartida('partida', $num, $coleccionPartidas);
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
@@ -357,7 +379,7 @@ do {
                 echo $rojo . "No jugo ninguna partida." . $reset . PHP_EOL;
             } else {
                 // print_r($coleccionPartidas[$partidaGanada]);
-                datosPartida('ganada',$partidaGanada,$coleccionPartidas);
+                datosPartida('ganada', $partidaGanada, $coleccionPartidas);
             }
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
@@ -372,14 +394,12 @@ do {
                     $estadisticas = estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset);
                     print_r($estadisticas);
                     break;
-                }
-                else{
+                } else {
                     echo "no existe ese jugador";
-                    
+
                     break;
-                    
+                }
             }
-        }
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
@@ -437,8 +457,8 @@ do {
             } elseif ($res === 'y') {
                 $exit = true;
                 echo $violeta . "Muchas gracias, vuelva pronto!!!" . $reset . PHP_EOL;
-            }else{
-                echo $verdeClaro . "Bien sigamos jugando" . $reset .PHP_EOL;
+            } else {
+                echo $verdeClaro . "Bien sigamos jugando" . $reset . PHP_EOL;
             }
 
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
@@ -449,4 +469,3 @@ do {
             echo $verde . "Vuelva a intentarlo" . $reset . PHP_EOL;
     }
 } while ($exit === false);
-
