@@ -27,7 +27,7 @@ function cargarColeccionPalabras()
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
-        /* Agregar 5 palabras más */
+        "HOJAS", "FIDEO", "AUDIO", "AUTOS", "MOTOS",
     ];
     return ($coleccionPalabras);
 }
@@ -46,6 +46,8 @@ function buscarPalabra($numPalabra, $arrayPalabras)
         return "No existe esa palabra";
     }
 }
+//isset determina si una variable esta declarada y es diferente de nula.
+
 
 /**
  * Busca si el jugador ya uso la palabra elegida
@@ -65,6 +67,7 @@ function buscarPalabraRepetida($coleccionPartidas, $nombre, $palabra)
     }
     return $existe;
 }
+//foreach presenta los elementos en el orden q fueron agregados.
 
 /**
  * ingresar nombre
@@ -80,6 +83,7 @@ function solicitarNombre()
         echo "Debe ingresar algo";
         $nombre = trim(fgets(STDIN));
     }
+    //revisar
     while (!ctype_alpha($nombre[0])) {
         echo "ingrese un nombre";
         $nombre = trim(fgets(STDIN));
@@ -89,6 +93,7 @@ function solicitarNombre()
     }
     return strtolower($nombre);
 }
+//ctype_alpha se fija q sea caracteres alfabeticos y no numeros.
 
 /**
  * esta funcion muestra la primer partida ganada
@@ -117,6 +122,7 @@ function primerPartidaGanada($nombre, $coleccionPartidas)
     }
     return $ganador;
 }
+//count cuenta todos los elementos de un arreglo o objeto contable.
 
 /**
  * Buscar primera partida cargada 
@@ -138,7 +144,7 @@ function buscarPrimeraPartida($nombre, $coleccionPartidas)
     }
     return $newArray;
 }
-
+//array push pushea uno o mas elementos al final del arreglo.
 /**
  * Función de comparación para ordenar por palabraWordix y, en caso de empate, por jugador
  * @param array $a
@@ -157,6 +163,7 @@ function compararPorPalabraYJugador($a, $b)
 
     return $comparacionPalabra;
 }
+//strcmp comparacion de mayusculas y minusculas.
 
 
 /**
@@ -209,7 +216,7 @@ function estadisticasjugador($nombre, $coleccionPartidasStaticas, $verdeClaro, $
 }
 
 
-/* ****COMPLETAR***** */
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -268,7 +275,7 @@ do {
     echo $amarillo . "8) salir \n" . $reset . PHP_EOL;
     echo "Elegir una opcion: ";
     $opcion = trim(fgets(STDIN));
-
+  //
     switch ($opcion) {
         case 1:
             echo $naranja . "\n1) Jugar al wordix con una palabra elegida " . $reset . PHP_EOL;
@@ -321,6 +328,7 @@ do {
            // print_r($coleccionPartidas);
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
+            //readline lee una linea
             break;
 
         case 3:
