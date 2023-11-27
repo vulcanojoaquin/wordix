@@ -298,7 +298,7 @@ do {
                     }
                 }
             } while ($res !== "n");
-            echo $celeste . "\nPresione cualquier tecla para continuar..." . $reset . PHP_EOL;
+            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
 
@@ -319,7 +319,7 @@ do {
             $partida = jugarWordix("$palabraBuscada", strtolower($nombre));
             array_push($coleccionPartidas, $partida);
             print_r($coleccionPartidas);
-            echo $celeste . "\nPresione cualquier tecla para continuar..." . $reset . PHP_EOL;
+            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
 
@@ -328,14 +328,14 @@ do {
             $long = count($coleccionPartidas);
             if ($long == 0) {
                 echo $amarillo . "No hay partidas registradas " . $reset . PHP_EOL;
-                echo $celeste . "Presione cualquier tecla para continuar..." . $reset . PHP_EOL;
+                echo $celeste . "Presione enter para continuar..." . $reset . PHP_EOL;
                 readline();
                 break;
             }
             echo "Partidas jugadas: $long\nIngrese un numero de partida: ";
             $num = (solicitarNumeroEntre(1, $long, $amarillo, $reset) - 1);
             datosPartida('partida',$num,$coleccionPartidas);
-            echo $celeste . "\nPresione cualquier tecla para continuar..." . $reset . PHP_EOL;
+            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
 
@@ -351,7 +351,7 @@ do {
                 // print_r($coleccionPartidas[$partidaGanada]);
                 datosPartida('ganada',$partidaGanada,$coleccionPartidas);
             }
-            echo $celeste . "\nPresione cualquier tecla para continuar..." . $reset . PHP_EOL;
+            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
 
@@ -361,7 +361,7 @@ do {
             $estadisticas = estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset);
             print_r($estadisticas);
 
-            echo $celeste . "\nPresione cualquier tecla para continuar..." . $reset . PHP_EOL;
+            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
 
@@ -370,7 +370,7 @@ do {
             uasort($coleccionPartidas, 'compararPorPalabraYJugador');
             print_r($coleccionPartidas);
 
-            echo $celeste . "\nPresione cualquier tecla para continuar..." . $reset . PHP_EOL;
+            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
 
@@ -405,7 +405,7 @@ do {
                 }
             } while ($res === 'y');
 
-            echo $celeste . "\nPresione cualquier tecla para continuar..." . $reset . PHP_EOL;
+            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
 
@@ -422,7 +422,7 @@ do {
                 echo $verdeClaro . "Bien sigamos jugando" . $reset .PHP_EOL;
             }
 
-            echo $celeste . "\nPresione cualquier tecla para continuar..." . $reset . PHP_EOL;
+            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
         default:
@@ -431,3 +431,4 @@ do {
     }
 } while ($exit === false);
 
+//presione cualquier letra
