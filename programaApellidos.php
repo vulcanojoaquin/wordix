@@ -318,7 +318,7 @@ do {
             } while ($palabraRepetida);
             $partida = jugarWordix("$palabraBuscada", strtolower($nombre));
             array_push($coleccionPartidas, $partida);
-            print_r($coleccionPartidas);
+           // print_r($coleccionPartidas);
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
