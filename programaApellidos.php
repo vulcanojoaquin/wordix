@@ -358,9 +358,20 @@ do {
         case 5:
             echo $naranja . "\n5) Mostrar resumen de Jugador " . $reset . PHP_EOL;
             $nombre = solicitarNombre();
-            $estadisticas = estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset);
-            print_r($estadisticas);
-
+            
+            foreach ($coleccionPartidas as $item) {
+                if ($item['jugador'] === $nombre) {
+                    $estadisticas = estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset);
+                    print_r($estadisticas);
+                    break;
+                }
+                else{
+                    echo "no existe ese jugador";
+                    
+                    break;
+                    
+            }
+        }
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
@@ -431,4 +442,3 @@ do {
     }
 } while ($exit === false);
 
-//presione cualquier letra
