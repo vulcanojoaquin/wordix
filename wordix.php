@@ -33,6 +33,7 @@ function solicitarNumeroEntre($min, $max, $amarillo, $reset)
 {
     //int $numero
 
+    // echo $amarillo . "Debe ingresar un número entre " . $min . " y " . $max . ": " . $reset . PHP_EOL;
     $numero = trim(fgets(STDIN));
 
     if (is_numeric($numero)) { //determina si un string es un número. puede ser float como entero.

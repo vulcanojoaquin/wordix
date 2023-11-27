@@ -19,12 +19,15 @@ function pregunta()
 {
     $rojo = "\033[0;31m";
     $reset = "\033[0m";
-    echo "Quiere intentar otra vez? (Y/N): ";
-    $res = trim(fgets(STDIN));
-    $resMen = strtolower($res);
-    if ($resMen !== "n" && $resMen !== "y") {
-        echo $rojo . "respuesta incorrecta\n" . $reset . PHP_EOL;
-    }
+    do{
+        echo "Quiere intentar otra vez? (Y/N): ";
+        $res = trim(fgets(STDIN));
+        $resMen = strtolower($res);
+        if ($resMen !== "n" && $resMen !== "y") {
+            echo $rojo . "respuesta incorrecta\n" . $reset . PHP_EOL;
+        }
+    }while($resMen !== 'y' && $resMen !== 'n');
+    
     return $resMen;
 }
 
