@@ -44,11 +44,10 @@ function mostrarMenu($amarillo, $reset) //establece el puntero interno de un arr
 function cargarColeccionPalabras()
 {
     $coleccionPalabras = [
-        "MUJER", "QUESO",
-        //  "FUEGO", "CASAS", "RASGO",
-        // "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        // "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
-        // "HOJAS", "FIDEO", "AUDIO", "AUTOS", "MOTOS",
+        "MUJER", "QUESO","FUEGO", "CASAS", "RASGO",
+        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+        "HOJAS", "FIDEO", "AUDIO", "AUTOS", "MOTOS",
     ];
     return ($coleccionPalabras);
 }
