@@ -59,8 +59,6 @@ function cargarColeccionPalabras()
  * @return array
  * 
  */
-
-
 function cargarColeccionPartidasStaticas()
 {
     $coleccionPartidas = [
@@ -87,7 +85,7 @@ function cargarColeccionPartidasStaticas()
  */
 function buscarPalabra($numPalabra, $arrayPalabras)
 {
-    if (isset($arrayPalabras[$numPalabra])) {           
+    if (isset($arrayPalabras[$numPalabra])) {
         return $arrayPalabras[$numPalabra];
     } else {
         return "No existe esa palabra";
@@ -105,6 +103,27 @@ function buscarPartidasDeUnJugador($coleccionPartidas, $nombre)
         }
     }
     return $partidasDelJugador;
+}
+
+
+/**
+ * Funcion para volver a preguntar si quiere seguir con la misma accion
+ * @return string $resMay
+ */
+function pregunta()
+{
+    $rojo = "\033[0;31m";
+    $reset = "\033[0m";
+    do{
+        echo "Quiere intentar otra vez? (Y/N): ";
+        $res = trim(fgets(STDIN));
+        $resMen = strtolower($res);
+        if ($resMen !== "n" && $resMen !== "y") {
+            echo $rojo . "respuesta incorrecta\n" . $reset . PHP_EOL;
+        }
+    }while($resMen !== 'y' && $resMen !== 'n');
+    
+    return $resMen;
 }
 
 /**
@@ -128,6 +147,34 @@ function buscarPalabraRepetida($partidasDelJugador, $palabraBuscada, $rojo, $res
 }
 //foreach presenta los elementos en el orden q fueron agregados.
 
+/**
+ * Funcion para mostrar datos de una partida 
+ * @param int $num;
+ * @param array $coleccionPartidas; 
+ */
+function datosPartida($tipo,$num, $coleccionPartidas)
+{
+    $reset = "\033[0m";
+    $verde = "\033[0;32m";
+    $verdeClaro = "\033[1;32m";
+    if($tipo === 'partida'){
+        $numPartida = $num + 1;
+    }
+    $palabraWordix = $coleccionPartidas[$num]['palabraWordix'];
+    $jugador = $coleccionPartidas[$num]['jugador'];
+    $intentos = $coleccionPartidas[$num]['intentos'];
+    $puntaje = $coleccionPartidas[$num]['puntaje'];
+    // print_r($coleccionPartidas[$num]);
+    if($tipo === 'partida'){
+        echo $verde . "\n   PARTIDA $numPartida" . $reset . PHP_EOL;
+    }else{
+        echo $verde . "\n   PRIMERA PARTIDA GANADA" . $reset . PHP_EOL;
+    }
+    echo $verdeClaro . "   [palabraWordix]: $palabraWordix \n";
+    echo "   [jugador]: $jugador \n";
+    echo "   [intentos]: $intentos \n";
+    echo "   [puntaje]: $puntaje " . $reset . PHP_EOL;
+};
 
 /**
  * Funcion para buscar y mostrar una partida de un jugador
@@ -250,6 +297,26 @@ function compararPorPalabraYJugador($a, $b)
 //strcmp comparacion de mayusculas y minusculas.
 
 
+/**
+ * Funcion para mostrar las partidas ordenadas
+ * @param array $coleccionPartidas;
+ * @param string $verdeClaro; 
+ * @param string $reset;
+ */
+function mostrarPartidasOrdenadas($coleccionPartidas, $verdeClaro, $reset){
+    foreach($coleccionPartidas as $partida){
+        $jugador = $partida['jugador'];
+        $palabraWordix = $partida['palabraWordix'];
+        $intentos = $partida['intentos'];
+        $puntaje = $partida['puntaje'];
+
+        echo $verdeClaro . "   [jugador]: $jugador\n";
+        echo $verdeClaro . "   [palabraWordix]: $palabraWordix\n";
+        echo $verdeClaro . "   [intentos]: $intentos\n";
+        echo $verdeClaro . "   [puntaje]: $puntaje\n" . $reset . PHP_EOL;
+    }
+}
+
 
 /**
  * funcion para estadisticas del jugador
@@ -266,40 +333,52 @@ function estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset)
     $partidas = 0;
     $victorias = 0;
     $puntajeTotal = 0;
-
     $adivinadas = ["intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
     foreach ($coleccionPartidas as $item) {
         if ($item['jugador'] === $nombre) {
-
-            //array_push($partidasJugador,$item);
             $partidas++;
             $puntajeTotal = $puntajeTotal + $item["puntaje"];
             if ($item["intentos"] > 0) {
+                switch ($item["intentos"]) {
+                    case 1:
+                        $adivinadas["intento1"]++;
+                        break;
+                    case 2:
+                        $adivinadas["intento2"]++;
+                        break;
+                    case 3:
+                        $adivinadas["intento3"]++;
+                        break;
+                    case 4:
+                        $adivinadas["intento4"]++;
+                        break;
+                    case 5:
+                        $adivinadas["intento5"]++;
+                        break;
+                    case 6:
+                        $adivinadas["intento6"]++;
+                        break;
+                    default:
+                        echo 'No existe el intento';
+                        break;
+                }
                 $victorias++;
             }
         }
     }
     $porcentajeVictorias = intval(($victorias * 100) / $partidas);
-
-    echo "********************************************\n";
-    echo $verdeClaro . "   jugador: $nombre" . $reset . PHP_EOL;
-    echo $verdeClaro . "   partidas: $partidas" . $reset . PHP_EOL;
-    echo $verdeClaro . "   puntaje total: $puntajeTotal" . $reset . PHP_EOL;
-    echo $verdeClaro . "   victorias: $victorias" . $reset . PHP_EOL;
-    echo $verdeClaro . "   porcentaje victorias: $porcentajeVictorias %" . $reset . PHP_EOL;
-    echo $verdeClaro . "   adivinadas: " . $reset . PHP_EOL;
-    print_r($adivinadas);
-    echo "********************************************\n";
-    // array_push($estadisticas,$nombre);
-    // array_push($estadisticas,$partidas);
-    // array_push($estadisticas,$puntajeTotal);
-    // array_push($estadisticas,$victorias);
-    // array_push($estadisticas,$porcentajeVictorias);
-    // array_push($estadisticas,$adivinadas);
-
-    // return $estadisticas;
-
-
+    echo PHP_EOL . $verdeClaro . "   jugador: $nombre \n";
+    echo "   partidas: $partidas \n";
+    echo "   puntaje total: $puntajeTotal \n";
+    echo "   victorias: $victorias \n";
+    echo "   porcentaje victorias: $porcentajeVictorias % \n";
+    echo "   adivinadas: \n";
+    echo "      Intentos 1: $adivinadas[intento1]\n";
+    echo "      Intentos 2: $adivinadas[intento2]\n";
+    echo "      Intentos 3: $adivinadas[intento3]\n";
+    echo "      Intentos 4: $adivinadas[intento4]\n";
+    echo "      Intentos 5: $adivinadas[intento5]\n";
+    echo "      Intentos 6: $adivinadas[intento6] " . $reset . PHP_EOL;
 }
 
 
@@ -311,9 +390,10 @@ function estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset)
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarColeccionPartidasStaticas();
 
+//Inicialización de variables:
 //Colores
 $rojo = "\033[0;31m";
-
+$verdeClaro = "\033[1;32m";
 $verdeMuyClaro = "\033[1;92m";
 $verde = "\033[0;32m";
 $amarillo = "\033[1;33m";
@@ -321,15 +401,9 @@ $celeste = "\033[0;36m";
 $violeta = "\033[0;35m";
 $naranja = "\033[0;33m";
 $reset = "\033[0m";
-
 //Acciones
 $exit = false;
-//Inicialización de variables:
 
-//Proceso:
-
-//print_r($partida);
-//imprimirResultado($partida);
 echo "\n";
 echo "**             **- WORDIX -**             **\n";
 
@@ -401,23 +475,22 @@ do {
         case 5:
             echo $naranja . "\n5) Mostrar resumen de Jugador " . $reset . PHP_EOL;
             $nombre = solicitarNombre();
-
-            foreach ($coleccionPartidas as $item) { //item elemento,foreach lo recorre.
-                if ($item['jugador'] === $nombre) {
-                    $estadisticas = estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset);
-                    print_r($estadisticas);                    
-                } else {
-                    echo "no existe ese jugador";                    
-                }
+            $partidasDelJugador = buscarPartidasDeUnJugador($coleccionPartidas, $nombre);
+            $cantidadPartidas = count($partidasDelJugador);
+            if ($cantidadPartidas === 0) {
+                echo $rojo . "El jugador no jugo ninguna partida." . $reset . "\n";
+            } else {
+                $estadisticas = estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset);
+                print_r($estadisticas);
             }
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
 
         case 6:
-            echo $naranja . "\nMostrar listado de partidas ordenadas por jugador y por palabra" . $reset . PHP_EOL;
+            echo $naranja . "\nMostrar listado de partidas ordenadas por jugador y por palabra\n" . $reset . PHP_EOL;
             uasort($coleccionPartidas, 'compararPorPalabraYJugador'); //ordena alfabeticamente o numericamente arreglo
-            print_r($coleccionPartidas);
+            mostrarPartidasOrdenadas($coleccionPartidas,$verdeClaro,$reset);
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
             break;
