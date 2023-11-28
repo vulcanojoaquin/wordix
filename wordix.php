@@ -344,9 +344,9 @@ function esIntentoGanado($estructuraPalabraIntento)
  * @param $palabraIntento int
  * @return int
  */
-function obtenerPuntajeWordix($nroIntento,$palabraIntento)  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($nroIntento,$palabraIntento) 
 {
-    /* ****COMPLETAR***** cuerpo de la función*/
+    
     $puntaje = 7 - $nroIntento;
     $puntajeLetras = [
         'A' => 1, 'B' => 2, 'C' => 2, 'D' => 2, 'E' => 1, 'F' => 2, 'G' => 2, 'H' => 2, 'I' => 1, 'J' => 2, 'K' => 2,
