@@ -91,7 +91,10 @@ function buscarPalabra($numPalabra, $arrayPalabras)
 }
 //isset determina si una variable esta declarada y es diferente de nula.
 
-
+/**
+ * busca la partida de algun jugador
+ * @param array $coleccionPartidas
+ */
 function buscarPartidasDeUnJugador($coleccionPartidas, $nombre)
 {
     $partidasDelJugador = [];
@@ -106,7 +109,7 @@ function buscarPartidasDeUnJugador($coleccionPartidas, $nombre)
 
 /**
  * Funcion para volver a preguntar si quiere seguir con la misma accion
- * @return string $resMen
+ * @return string $resMenor
  */
 function pregunta()
 {
@@ -115,13 +118,8 @@ function pregunta()
     do {
         echo "Quiere intentar otra vez? (Y/N): ";
         $respuesta = trim(fgets(STDIN));
-<<<<<<< HEAD
-        $resMen = strtolower($respuesta);
-        if ($resMen !== "n" && $resMen !== "y") {
-=======
         $resMenor = strtolower($respuesta);
         if ($resMenor !== "n" && $resMenor !== "y") {
->>>>>>> e3417b9f5184a63d42da6398cd1a96dc3609e853
             echo $rojo . "respuesta incorrecta\n" . $reset . PHP_EOL;
         }
     } while ($resMenor !== 'y' && $resMenor !== 'n');
@@ -369,7 +367,11 @@ function estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset)
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
-//Declaración de variables:
+//Declaración de variables: 
+//string $nombre,$respuesta,$palabraBuscada, $amarillo, $reset, $naranja, $rojo, $celeste, $verde, $verdeClaro, $violeta
+//int $opcion, $cantidadPalabras,$mostrarCantidadPalabras, $numeroPalabra,$cantidadPartidas,
+//boolean $palabraRepetida, $exit
+//array $partida, $coleccionPartidas, $coleccionPalabras
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarColeccionPartidasStaticas();
 
@@ -386,13 +388,9 @@ $reset = "\033[0m";
 //Acciones
 $exit = false;
 
-<<<<<<< HEAD
 echo "\n";
 echo "**             **- WORDIX -**             **\n";
     
-=======
-echo "\n**             **- WORDIX -**             **\n";
->>>>>>> e3417b9f5184a63d42da6398cd1a96dc3609e853
 do {
     mostrarMenu($amarillo, $reset);
     $opcion = trim(fgets(STDIN));
