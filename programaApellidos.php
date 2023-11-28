@@ -21,7 +21,8 @@ include_once("cases.php");
  * @param string $amarillo
  * @param string $reset
  */
-function mostrarMenu($amarillo, $reset)
+function mostrarMenu($amarillo, $reset) //establece el puntero interno de un array a su primer elemento.
+
 {
     echo "\n********************************************\n";
     echo "**                  MENU                  **\n";
@@ -80,13 +81,13 @@ function cargarColeccionPartidasStaticas()
 
 /**
  * Buscar a la palabra segun el numero que eligio el usuario
- * @param $arrayPalabras array
- * @param $numPalabra int
+ * @param  array $arrayPalabras
+ * @param  int $numPalabra
  * @return string
  */
 function buscarPalabra($numPalabra, $arrayPalabras)
 {
-    if (isset($arrayPalabras[$numPalabra])) {
+    if (isset($arrayPalabras[$numPalabra])) {           
         return $arrayPalabras[$numPalabra];
     } else {
         return "No existe esa palabra";
@@ -108,9 +109,10 @@ function buscarPartidasDeUnJugador($coleccionPartidas, $nombre)
 
 /**
  * Busca si el jugador ya uso la palabra elegida
- * @param $coleccionPartidas array
- * @param $nombre string
- * @param $palabra string
+ * @param array $partidasDelJugador
+ * @param string $rojo
+ * @param  string $reset
+ * @param string $palabraBuscada
  * @return boolean
  */
 function buscarPalabraRepetida($partidasDelJugador, $palabraBuscada, $rojo, $reset)
@@ -129,7 +131,11 @@ function buscarPalabraRepetida($partidasDelJugador, $palabraBuscada, $rojo, $res
 
 /**
  * Funcion para buscar y mostrar una partida de un jugador
- * 
+ * @param int $cantidadDePartidas
+ * @param array $coleccionPartidas
+ * @param string $amarillo
+ * @param string $celeste
+ * @param string $reset
  */
 function  mostrarUnaPartida($cantidadDePartidas, $coleccionPartidas, $amarillo, $celeste, $reset)
 {
@@ -204,8 +210,8 @@ function primerPartidaGanada($nombre, $coleccionPartidas)
 
 /**
  * Buscar primera partida cargada 
- * @param $nombre string
- * @param $coleccionPartidas array
+ * @param  string $nombre
+ * @param  array $coleccionPartidas
  * @return array
  */
 function buscarPrimeraPartida($nombre, $coleccionPartidas)
@@ -247,7 +253,7 @@ function compararPorPalabraYJugador($a, $b)
 
 /**
  * funcion para estadisticas del jugador
- * @param string $verClaro;
+ * @param string $verdeClaro;
  * @param string $reset;
  * @param string $nombre;
  * @param array $coleccionPartidas;
