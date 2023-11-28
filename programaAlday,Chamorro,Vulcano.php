@@ -372,10 +372,11 @@ function estadisticasjugador($nombre, $partidasDelJugador, $cantidadPartidas, $v
 //int $opcion, $cantidadPalabras,$mostrarCantidadPalabras, $numeroPalabra,$cantidadPartidas,
 //boolean $palabraRepetida, $exit
 //array $partida, $coleccionPartidas, $coleccionPalabras
-$coleccionPalabras = cargarColeccionPalabras();
-$coleccionPartidas = cargarColeccionPartidas();
+
 
 //Inicialización de variables:
+$coleccionPalabras = cargarColeccionPalabras();
+$coleccionPartidas = cargarColeccionPartidas();
 //Colores
 $rojo = "\033[0;31m";
 $verde = "\033[0;32m";
