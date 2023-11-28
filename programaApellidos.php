@@ -1,6 +1,5 @@
 <?php
 include_once("wordix.php");
-include_once("cases.php");
 
 /**************************************/
 /***** DATOS DE LOS INTEGRANTES *******/
