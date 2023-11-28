@@ -79,7 +79,7 @@ function cargarColeccionPartidasStaticas()
  * Funcion para buscar a la palabra segun el numero que eligio el usuario
  * @param  array $arrayPalabras
  * @param  int $numPalabra
- * @return string
+ * @return string || @return array
  */
 function buscarPalabra($numPalabra, $arrayPalabras)
 {
@@ -94,6 +94,8 @@ function buscarPalabra($numPalabra, $arrayPalabras)
 /**
  * busca la partida de algun jugador
  * @param array $coleccionPartidas
+ * @param string $nombre
+ * @return array
  */
 function buscarPartidasDeUnJugador($coleccionPartidas, $nombre)
 {
@@ -134,6 +136,7 @@ function pregunta()
  * @param string $rojo
  * @param  string $reset
  * @param string $palabraBuscada
+ * @param int $case
  * @return boolean
  */
 function buscarPalabraRepetida($partidasDelJugador, $palabraBuscada, $rojo, $reset,$case)
@@ -156,6 +159,7 @@ function buscarPalabraRepetida($partidasDelJugador, $palabraBuscada, $rojo, $res
  * Funcion para mostrar datos de una partida 
  * @param int $num;
  * @param array $coleccionPartidas; 
+ * @param string $tipo;
  */
 function datosPartida($tipo, $num, $coleccionPartidas)
 {
@@ -264,7 +268,7 @@ function primerPartidaGanada($nombre, $coleccionPartidas)
  * Función de comparación para ordenar por jugador y, en caso de empate, por palabraWordix.
  * @param array $a
  * @param array $b
- * @return 
+ * @return int $comparacionPalabra
  **/
 function compararPorPalabraYJugador($a, $b)
 {
@@ -306,8 +310,6 @@ function mostrarPartidasOrdenadas($coleccionPartidas, $verdeClaro, $reset)
  * @param string $reset;
  * @param string $nombre;
  * @param array $coleccionPartidas;
- * @return array
- * 
  */
 function estadisticasjugador($nombre, $coleccionPartidas, $verdeClaro, $reset)
 {
