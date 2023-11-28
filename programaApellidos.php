@@ -107,7 +107,7 @@ function buscarPartidasDeUnJugador($coleccionPartidas, $nombre)
 
 /**
  * Funcion para volver a preguntar si quiere seguir con la misma accion
- * @return string $resMay
+ * @return string $resMen
  */
 function pregunta()
 {
@@ -115,8 +115,8 @@ function pregunta()
     $reset = "\033[0m";
     do{
         echo "Quiere intentar otra vez? (Y/N): ";
-        $res = trim(fgets(STDIN));
-        $resMen = strtolower($res);
+        $respuesta = trim(fgets(STDIN));
+        $resMen = strtolower($respuesta);
         if ($resMen !== "n" && $resMen !== "y") {
             echo $rojo . "respuesta incorrecta\n" . $reset . PHP_EOL;
         }
@@ -405,7 +405,7 @@ $exit = false;
 
 echo "\n";
 echo "**             **- WORDIX -**             **\n";
-
+    
 do {
     mostrarMenu($amarillo, $reset);
     $opcion = trim(fgets(STDIN));
