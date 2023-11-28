@@ -439,7 +439,7 @@ do {
             do {
                 $cantidadPalabras = count($coleccionPalabras);
                 $numeroPalabra = rand(0, $cantidadPalabras - 1); //rand numero random
-                $palabraBuscada = buscarPalabra($num, $coleccionPalabras);
+                $palabraBuscada = buscarPalabra($numeroPalabra, $coleccionPalabras);
                 $partidasDelJugador = buscarPartidasDeUnJugador($coleccionPartidas, $nombre);
                 $palabraRepetida = buscarPalabraRepetida($partidasDelJugador, $palabraBuscada, $rojo, $reset);
             } while ($palabraRepetida);
