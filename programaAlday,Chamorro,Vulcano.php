@@ -363,6 +363,34 @@ function estadisticasjugador($nombre, $partidasDelJugador, $cantidadPartidas, $v
 }
 
 
+/**
+ * Funcion para preguntar si quiere salir el usuario
+ * @param string $respuesta;
+ * @param string $violeta;
+ * @param string $celeste;
+ * @return booleano
+ */
+function preguntaExit($respuesta, $violeta, $verdeClaro, $celeste)
+{
+    $rojo = "\033[0;31m";
+    $reset = "\033[0m";
+    $repuestaExit = false;
+    if ($respuesta !== 'n' && $respuesta !== 'y') {
+        echo $rojo . "Error al ingresar la respuesta" . $reset . PHP_EOL;
+        echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
+        readline();
+    } elseif ($respuesta === 'y') {
+        $repuestaExit = true;
+        echo $violeta . "\nMuchas gracias, vuelva pronto!!!\n" . $reset . PHP_EOL;
+    } else {
+        echo $verdeClaro . "Bien, sigamos jugando" . $reset . PHP_EOL;
+        echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
+        readline();
+    }
+    return $repuestaExit;
+}
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -518,16 +546,7 @@ do {
             echo $amarillo . "\n8) salir" . $reset . PHP_EOL;
             echo ' Quiere cerrar el juego? Y/N  ';
             $respuesta = strtolower(trim(fgets(STDIN)));
-            if ($respuesta !== 'n' && $respuesta !== 'y') {
-                echo $rojo . "Error al ingresar la respuesta" . $reset . PHP_EOL;
-            } elseif ($respuesta === 'y') {
-                $exit = true;
-                echo $violeta . "Muchas gracias, vuelva pronto!!!" . $reset . PHP_EOL;
-            } else {
-                echo $verdeClaro . "Bien, sigamos jugando" . $reset . PHP_EOL;
-            }
-            echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
-            readline();
+            $exit = preguntaExit($respuesta, $violeta, $verdeClaro,$celeste);
             break;
         default: //se utiliza para ejecutar el codigo cuando la opcion no es uno de los case.
             echo $rojo . "No existe esa opción" . $reset . PHP_EOL;
