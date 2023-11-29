@@ -194,7 +194,7 @@ function datosPartida($tipo, $num, $coleccionPartidas)
  * @param string $celeste
  * @param string $reset
  */
-function  mostrarUnaPartida($cantidadDePartidas, $coleccionPartidas, $amarillo, $celeste, $reset)
+function  mostrarPartida($cantidadDePartidas, $coleccionPartidas, $amarillo, $celeste, $reset)
 {
     if ($cantidadDePartidas == 0) {
         echo $amarillo . "No hay partidas registradas " . $reset . PHP_EOL;
@@ -222,7 +222,7 @@ function solicitarNombre()
         echo "Debe ingresar algo";
         $nombre = trim(fgets(STDIN));
     }
-    while (!ctype_alpha($nombre[0])) {
+    while (!ctype_alpha($nombre[0])) {  //candena string
         echo "ingrese un nombre";
         $nombre = trim(fgets(STDIN));
         if (($nombre === "") || ($nombre === null)) {
@@ -438,7 +438,7 @@ do {
                 do {
                     $respuesta = 'n';
                     echo "Ingrese un numero de partida entre 0 y $mostrarCantidadPalabras: ";
-                    $numeroPalabra = solicitarNumeroEntre(0, $cantidadPalabras, $amarillo, $reset);
+                    $numeroPalabra = solicitarNumeroEntre(0, $mostrarCantidadPalabras, $amarillo, $reset);
                     $palabraBuscada = buscarPalabra($numeroPalabra, $coleccionPalabras);
 
                     $palabraRepetida = buscarPalabraRepetida($partidasDelJugador, $palabraBuscada, $rojo, $reset, 1);
@@ -478,7 +478,7 @@ do {
         case 3:
             echo $verde . "\n3) Mostrar una partida " . $reset . PHP_EOL;
             $cantidadDePartidas = count($coleccionPartidas);
-            mostrarUnaPartida($cantidadDePartidas, $coleccionPartidas, $amarillo, $celeste, $reset);
+            mostrarPartida($cantidadDePartidas, $coleccionPartidas, $amarillo, $celeste, $reset);
             break;
 
         case 4:
@@ -504,8 +504,7 @@ do {
             if ($cantidadPartidas === 0) {
                 echo $rojo . "El jugador no jugo ninguna partida." . $reset . "\n";
             } else {
-                $estadisticas = estadisticasjugador($nombre, $partidasDelJugador, $cantidadPartidas, $verdeClaro, $reset);
-                print_r($estadisticas);
+                 estadisticasjugador($nombre, $partidasDelJugador, $cantidadPartidas, $verdeClaro, $reset);
             }
             echo $celeste . "\nPresione enter para continuar..." . $reset . PHP_EOL;
             readline();
